@@ -18,6 +18,23 @@ const Piano = () => {
     setActiveKeys((prev) => new Set(prev).add(key));
   }, []);
 
+  useEffect(() => {
+    if (isPlaying) {
+      const title = "M U S I C 🎹";
+      let index = 0;
+
+      const interval = setInterval(() => {
+        document.title = title.slice(0, index + 1);
+        index++;
+        if (index >= title.length) index = 0;
+      }, 250);
+
+      return () => clearInterval(interval);
+    } else {
+      document.title = "The sound of silence...";
+    }
+  }, [isPlaying]);
+
   const handleKeyDown = useCallback(
     async (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
