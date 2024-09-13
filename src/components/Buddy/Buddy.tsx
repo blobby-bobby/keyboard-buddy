@@ -7,12 +7,16 @@ const Buddy = () => {
 
   useEffect(() => {
     if (isPlaying) {
+      console.log(happiness);
       setHappiness((prev) => prev + 1);
     } else {
       const interval = setInterval(() => {
         setHappiness((prev) => prev - 1);
       }, 5000);
 
+      if (happiness <= 0) {
+        setHappiness(0);
+      }
       return () => clearInterval(interval);
     }
   }, [isPlaying]);
