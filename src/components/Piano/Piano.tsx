@@ -4,11 +4,11 @@ import { playNote } from "../../utils/piano/playNote";
 import { initializeAudioContext } from "../../utils/context/initializeAudioContext";
 import { logSilence } from "../../utils/logSilence";
 import "./style.css";
-import { IsPlayingContext } from "../../utils/context/isPlayingContext";
+import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
 
 const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
-  const { isPlaying, setIsPlaying } = useContext(IsPlayingContext);
+  const { setIsPlaying } = useContext(IsPlayingContext);
 
   const handlePlayNote = useCallback(async (key: string) => {
     await initializeAudioContext();
@@ -72,23 +72,6 @@ const Piano = () => {
 
     return () => clearTimeout(timeOut);
   }, [activeKeys.size]);
-
-  useEffect(() => {
-    if (isPlaying) {
-      let title = "M U S I C 🎹";
-      let index = 0;
-
-      const interval = setInterval(() => {
-        document.title = title.slice(0, index + 1);
-        index++;
-        if (index >= title.length) index = 0;
-      }, 250);
-
-      return () => clearInterval(interval);
-    } else {
-      document.title = "The sound of silence...";
-    }
-  }, [isPlaying]);
 
   return (
     <>
