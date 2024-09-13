@@ -1,5 +1,5 @@
 .gameboy {
-  width: 367px;
+  width: fit-content;
   height: 530px;
   background-color: rgb(210, 221, 205);
   border-top-right-radius: 30px;

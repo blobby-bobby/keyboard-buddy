@@ -18,9 +18,3 @@
 .feeling-panel {
   width: fit-content;
 }
-
-.buddy-background {
-  background: url("../../assets/bg1_beach.png") repeat-x;
-  width: 100%;
-  height: 144px;
-}

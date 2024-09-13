@@ -10,15 +10,16 @@ h1 {
   background-color: #585769;
   border-radius: 10px 10px 50px 10px;
   border: 1px solid rgba(0, 0, 0, 0.25);
-  width: 100%;
   padding: 1rem 1rem 1.5rem 1rem;
   box-shadow: inset -1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+  width: 100%;
 }
 
 .screen-display {
   display: flex;
   gap: 1rem;
   align-items: center;
+  margin-right: 30%;
 }
 
 .light-bulb {
@@ -41,11 +42,13 @@ h1 {
 }
 
 .screen {
-  width: 200px;
-  height: 195px;
-  background-color: #527f39;
+  width: 100%;
+  max-width: 195px;
+  aspect-ratio: 1 / 1;
   border-left: 1px solid rgba(255, 255, 255, 0.4);
   border-top: 1px solid rgba(255, 255, 255, 0.4);
+  background: url("../../assets/bg1_beach.png") repeat-x, #527f39;
+  background-position-y: bottom;
 }
 
 .screen-decoration {
