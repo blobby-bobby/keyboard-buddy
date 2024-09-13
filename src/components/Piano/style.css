@@ -1,13 +1,34 @@
+.key-labels {
+  margin-top: 1rem;
+  font-size: 9pt;
+  color: rgb(70, 71, 99);
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+
+  span {
+    width: 2.5rem;
+    text-align: center;
+  }
+}
+
 .piano {
   display: flex;
+  background-color: rgb(188, 202, 179);
+  padding: 0.5rem;
+  text-transform: uppercase;
+  color: #d2ddcd;
+  border-radius: 10px;
+  box-shadow: inset -2px -1px 5px 2px rgba(0, 0, 0, 0.035);
 }
 
 .piano-key-wrapper {
   display: flex;
   width: fit-content;
-  gap: 0.5rem;
+  gap: 0.25rem;
   position: relative;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 2.5rem;
@@ -16,15 +37,17 @@
 .piano-key {
   border-radius: 0 0 4px 4px;
   border: 1px solid transparent;
-  font-size: 0.7rem;
   width: 100%;
   height: 4rem;
-
-  font-weight: 500;
+  font-weight: bold;
   font-family: inherit;
-  background-color: #ffe;
+  font-size: 7pt;
+  background-color: #edf2ea;
   color: #000;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 .piano-key:hover {
   border-color: #646cff;

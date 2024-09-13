@@ -1,10 +1,15 @@
-import { useContext } from "react";
-import { IsPlayingContext } from "../../utils/context/isPlayingContext";
-
+import "./styles.css";
 const Buddy = () => {
-  const { isPlaying } = useContext(IsPlayingContext);
-
-  return <h2>{isPlaying ? `🎹 Playing` : `🤫 Silence`}</h2>;
+  return (
+    <div className="buddyvision">
+      <div className="interface">
+        <div className="feeling-panel">
+          <span>㋛</span>
+        </div>
+        <progress className="happiness-score" />
+      </div>
+    </div>
+  );
 };
 
 export default Buddy;

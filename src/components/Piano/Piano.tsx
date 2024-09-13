@@ -92,16 +92,20 @@ const Piano = () => {
 
   return (
     <>
+      <div className="key-labels">
+        {keyboardKeys.map((key) => (
+          <span key={key}>{key}</span>
+        ))}
+      </div>
       <div className="piano">
         {Object.entries(pianoKeysMap).map(([key, value]: [string, string]) => (
           <div key={key} className="piano-key-wrapper">
-            <span>{value}</span>
             <button
               className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
               onMouseDown={() => handlePlayNote(key)}
               onMouseUp={() => inactivateKeys(key)}
             >
-              {key}
+              {value}
             </button>
           </div>
         ))}
