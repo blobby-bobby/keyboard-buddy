@@ -8,6 +8,7 @@ const Buddy = () => {
         </div>
         <progress className="happiness-score" />
       </div>
+      <div className="buddy-background"></div>
     </div>
   );
 };
