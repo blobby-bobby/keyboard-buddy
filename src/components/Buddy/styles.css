@@ -18,3 +18,7 @@
 .feeling-panel {
   width: fit-content;
 }
+
+meter {
+  width: 60%;
+}

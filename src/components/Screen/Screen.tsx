@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { IsPlayingContext } from "../../utils/context/isPlayingContext";
+import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
 import "./style.css";
 import Buddy from "../Buddy/Buddy";
 
