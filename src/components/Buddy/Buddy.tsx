@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
+import sad from "../../assets/sad-ui.png";
 
 const Buddy = () => {
   const { isPlaying } = useContext(IsPlayingContext);
@@ -28,7 +29,7 @@ const Buddy = () => {
       <div className="interface">
         <div className="feeling-panel">
           <img
-            src="src/assets/sad-ui.svg"
+            src={sad}
             className={`${happiness < 3 ? "sad" : ""}`}
             alt="feeling-sad"
           />
