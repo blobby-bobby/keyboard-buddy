@@ -12,7 +12,7 @@ const Buddy = () => {
     } else {
       const interval = setInterval(() => {
         setHappiness((prev) => prev - 1);
-      }, 5000);
+      }, 10000);
 
       if (happiness <= 0) {
         setHappiness(0);
@@ -24,10 +24,15 @@ const Buddy = () => {
   return (
     <div className="buddyvision">
       <div className="interface">
-        <div className="feeling-panel">
-          <span>㋛</span>
+        <div className="feeling-panel"></div>
+        <div className="happiness-score">
+          {Array.from({ length: 8 }, (_, index) => (
+            <div
+              key={index}
+              className={`unit ${happiness > index ? "happy" : "sad"}`}
+            />
+          ))}
         </div>
-        <meter className="happiness-score" value={happiness} max={10} />
       </div>
       <div className="buddy-background"></div>
     </div>
