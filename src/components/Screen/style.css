@@ -49,6 +49,7 @@ h1 {
   border-top: 1px solid rgba(255, 255, 255, 0.4);
   background: url("../../assets/bg1_beach.png") repeat-x, #527f39;
   background-position-y: bottom;
+  padding-bottom: 10%;
 }
 
 .screen-decoration {

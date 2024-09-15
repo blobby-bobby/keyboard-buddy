@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
+import idle from "../../assets/buddy_idle.gif";
+
 const Buddy = () => {
   const { isPlaying } = useContext(IsPlayingContext);
   const [happiness, setHappiness] = useState(7);
@@ -34,7 +36,9 @@ const Buddy = () => {
           ))}
         </div>
       </div>
-      <div className="buddy-background"></div>
+      <div className="buddy-background">
+        <img src={idle} alt="buddy" />
+      </div>
     </div>
   );
 };
