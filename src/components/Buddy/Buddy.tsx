@@ -26,7 +26,13 @@ const Buddy = () => {
   return (
     <div className="buddyvision">
       <div className="interface">
-        <div className="feeling-panel"></div>
+        <div className="feeling-panel">
+          <img
+            src="src/assets/sad-ui.svg"
+            className={`${happiness < 3 ? "sad" : ""}`}
+            alt="feeling-sad"
+          />
+        </div>
         <div className="happiness-score">
           {Array.from({ length: 8 }, (_, index) => (
             <div
