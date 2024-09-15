@@ -45,6 +45,7 @@
 
 .piano-key-wrapper button {
   padding: 0.15rem;
+  min-width: 24px;
 }
 
 .piano-key:hover {
