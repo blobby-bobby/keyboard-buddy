@@ -13,9 +13,15 @@ const Gameboy = () => {
         <Piano />
 
         <div className="gameboy-bottom">
-          <div className="button-down">
-            <p>Reset</p>
-            <button className="reset" type="button"></button>
+          <div className="buttons-down">
+            <div className="button-down">
+              <button className="reset" type="button"></button>
+              <p>Reset</p>
+            </div>
+            <div className="button-down">
+              <button className="option" type="button"></button>
+              <p>option</p>
+            </div>
           </div>
 
           <div className="speakers">
