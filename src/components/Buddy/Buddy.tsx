@@ -49,7 +49,7 @@ const Buddy = () => {
         </div>
       </div>
       <div className="buddy-background">
-        <img src={happiness > 3 ? idle : sad} alt="buddy" />
+        <img src={happiness < 3 ? sad : idle} alt="buddy" />
       </div>
     </div>
   );
