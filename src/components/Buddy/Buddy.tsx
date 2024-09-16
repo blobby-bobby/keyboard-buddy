@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import "./styles.css";
 import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
-import sad from "../../assets/sad-ui.png";
+import sad from "../../assets/buddy_sad.gif";
+import sad_icon from "../../assets/sad-ui.png";
 
 const Buddy = () => {
   const { isPlaying } = useContext(IsPlayingContext);
@@ -12,6 +13,10 @@ const Buddy = () => {
     if (isPlaying) {
       console.log(happiness);
       setHappiness((prev) => prev + 1);
+
+      if (happiness >= 8) {
+        setHappiness(8);
+      }
     } else {
       const interval = setInterval(() => {
         setHappiness((prev) => prev - 1);
@@ -29,7 +34,7 @@ const Buddy = () => {
       <div className="interface">
         <div className="feeling-panel">
           <img
-            src={sad}
+            src={sad_icon}
             className={`${happiness < 3 ? "sad" : ""}`}
             alt="feeling-sad"
           />
@@ -44,7 +49,7 @@ const Buddy = () => {
         </div>
       </div>
       <div className="buddy-background">
-        <img src={idle} alt="buddy" />
+        <img src={happiness > 3 ? idle : sad} alt="buddy" />
       </div>
     </div>
   );
