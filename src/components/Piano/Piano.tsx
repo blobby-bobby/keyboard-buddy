@@ -8,7 +8,7 @@ import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 
 const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
-  const { setIsPlaying } = useContext(BuddyPlayContext);
+  const { setIsPlaying, gameOver } = useContext(BuddyPlayContext);
 
   const handlePlayNote = useCallback(async (key: string) => {
     await initializeAudioContext();
@@ -16,6 +16,8 @@ const Piano = () => {
       logSilence();
       return;
     }
+
+    if (gameOver) return;
     playNote(key);
     setActiveKeys((prev) => new Set(prev).add(key));
   }, []);
@@ -62,6 +64,7 @@ const Piano = () => {
   useEffect(() => {
     let timeOut: ReturnType<typeof setTimeout>;
 
+    if (gameOver) return;
     if (!activeKeys.size) {
       timeOut = setTimeout(() => {
         setIsPlaying(false);
@@ -87,6 +90,7 @@ const Piano = () => {
               className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
               onMouseDown={() => handlePlayNote(key)}
               onMouseUp={() => inactivateKeys(key)}
+              disabled={gameOver}
             >
               {value}
             </button>
