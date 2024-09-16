@@ -42,6 +42,7 @@ body,
   margin-bottom: 1rem;
   max-width: 420px;
   text-align: center;
+  min-height: 64px;
 }
 
 kbd {

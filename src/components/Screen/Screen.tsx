@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
+import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import "./style.css";
 import Buddy from "../Buddy/Buddy";
 
 const Screen = () => {
-  const { isPlaying } = useContext(IsPlayingContext);
+  const { isPlaying } = useContext(BuddyPlayContext);
 
   return (
     <>

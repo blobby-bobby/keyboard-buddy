@@ -4,27 +4,77 @@ import {
   FC,
   ReactNode,
   SetStateAction,
+  useCallback,
+  useMemo,
   useState,
 } from "react";
 
-type IsPlayingContextProps = {
+type BuddyPlayContextProps = {
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  happiness: number;
+  setHappiness: Dispatch<SetStateAction<number>>;
+  increaseHappiness: () => void;
+  decreaseHappiness: () => void;
+  gameStart: () => void;
+  gameOver: boolean;
 };
 
-const IsPlayingContext = createContext<IsPlayingContextProps>({
+const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   isPlaying: false,
   setIsPlaying: () => {},
+  happiness: 7,
+  setHappiness: () => {},
+  increaseHappiness: () => {},
+  decreaseHappiness: () => {},
+  gameStart: () => {},
+  gameOver: false,
 });
 
-const IsPlayingProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [happiness, setHappiness] = useState(7);
+
+  const increaseHappiness = () => {
+    setHappiness((prev) => prev + 1);
+
+    if (happiness >= 8) {
+      setHappiness(8);
+    }
+  };
+
+  const decreaseHappiness = () => {
+    setHappiness((prev) => prev - 1);
+
+    if (happiness <= 0) {
+      setHappiness(0);
+    }
+  };
+
+  const gameStart = useCallback(() => {
+    setHappiness(7);
+  }, []);
+
+  const gameOver = useMemo(() => {
+    return happiness === 0;
+  }, [happiness]);
 
   return (
-    <IsPlayingContext.Provider value={{ isPlaying, setIsPlaying }}>
+    <BuddyPlayContext.Provider
+      value={{
+        isPlaying,
+        setIsPlaying,
+        happiness,
+        setHappiness,
+        increaseHappiness,
+        decreaseHappiness,
+        gameStart,
+        gameOver,
+      }}
+    >
       {children}
-    </IsPlayingContext.Provider>
+    </BuddyPlayContext.Provider>
   );
 };
 
-export { IsPlayingProvider, IsPlayingContext };
+export { BuddyPlayProvider, BuddyPlayContext };

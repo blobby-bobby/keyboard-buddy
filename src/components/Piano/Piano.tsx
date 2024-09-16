@@ -4,11 +4,11 @@ import { playNote } from "../../utils/piano/playNote";
 import { initializeAudioContext } from "../../utils/context/initializeAudioContext";
 import { logSilence } from "../../utils/logSilence";
 import "./style.css";
-import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
+import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 
 const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
-  const { setIsPlaying } = useContext(IsPlayingContext);
+  const { setIsPlaying } = useContext(BuddyPlayContext);
 
   const handlePlayNote = useCallback(async (key: string) => {
     await initializeAudioContext();
