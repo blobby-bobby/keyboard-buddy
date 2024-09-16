@@ -1,33 +1,35 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import "./styles.css";
-import { IsPlayingContext } from "../../utils/context/playWithBuddyContext";
+import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
 import sad from "../../assets/buddy_sad.gif";
+import dead from "../../assets/buddy-dead.png";
 import sad_icon from "../../assets/sad-ui.png";
 
 const Buddy = () => {
-  const { isPlaying } = useContext(IsPlayingContext);
-  const [happiness, setHappiness] = useState(7);
+  const {
+    isPlaying,
+    happiness,
+    decreaseHappiness,
+    increaseHappiness,
+    gameOver,
+  } = useContext(BuddyPlayContext);
 
   useEffect(() => {
     if (isPlaying) {
-      console.log(happiness);
-      setHappiness((prev) => prev + 1);
-
-      if (happiness >= 8) {
-        setHappiness(8);
-      }
+      increaseHappiness();
     } else {
       const interval = setInterval(() => {
-        setHappiness((prev) => prev - 1);
+        decreaseHappiness();
       }, 10000);
-
-      if (happiness <= 0) {
-        setHappiness(0);
-      }
       return () => clearInterval(interval);
     }
   }, [isPlaying]);
+
+  const buddyFeeling = useMemo(() => {
+    if (gameOver) return dead;
+    return happiness < 3 ? sad : idle;
+  }, [happiness]);
 
   return (
     <div className="buddyvision">
@@ -49,7 +51,7 @@ const Buddy = () => {
         </div>
       </div>
       <div className="buddy-background">
-        <img src={happiness < 3 ? sad : idle} alt="buddy" />
+        <img src={buddyFeeling} alt="buddy" />
       </div>
     </div>
   );
