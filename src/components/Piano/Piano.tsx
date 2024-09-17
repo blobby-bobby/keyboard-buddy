@@ -91,6 +91,7 @@ const Piano = () => {
               onMouseDown={() => handlePlayNote(key)}
               onMouseUp={() => inactivateKeys(key)}
               disabled={gameOver}
+              type="button"
             >
               {value}
             </button>
