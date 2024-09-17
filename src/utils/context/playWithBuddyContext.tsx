@@ -33,7 +33,7 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
 
 const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [happiness, setHappiness] = useState(7);
+  const [happiness, setHappiness] = useState(2);
 
   const increaseHappiness = () => {
     setHappiness((prev) => prev + 1);
@@ -46,7 +46,7 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const decreaseHappiness = () => {
     setHappiness((prev) => prev - 1);
 
-    if (happiness <= 0) {
+    if (happiness < 0) {
       setHappiness(0);
     }
   };
@@ -56,7 +56,7 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   }, []);
 
   const gameOver = useMemo(() => {
-    return happiness === 0;
+    return happiness < 1;
   }, [happiness]);
 
   return (
