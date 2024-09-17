@@ -18,7 +18,7 @@
 .piano {
   display: flex;
   width: 100%;
-
+  gap: 0.25rem;
   background-color: rgb(188, 202, 179);
   padding: 0.5rem;
   text-transform: uppercase;
@@ -29,28 +29,13 @@
 
 .piano-key {
   border-radius: 0 0 4px 4px;
-  border: 1px solid transparent;
-  width: 100%;
+  border: none;
+  width: 1.25rem;
   height: 4rem;
-  font-weight: bold;
-  font-family: inherit;
-  font-size: 7pt;
   background-color: #edf2ea;
-  color: #000;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
 }
 
-.piano-key-wrapper button {
-  padding: 0.15rem;
-  min-width: 24px;
-}
-
-.piano-key:hover {
-  border-color: #646cff;
-}
 .piano-key.active {
   outline: 4px auto #646cff;
   background-color: #646cff;

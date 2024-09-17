@@ -84,18 +84,14 @@ const Piano = () => {
         ))}
       </div>
       <div className="piano">
-        {Object.entries(pianoKeysMap).map(([key, value]: [string, string]) => (
-          <div key={key} className="piano-key-wrapper">
-            <button
-              className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
-              onMouseDown={() => handlePlayNote(key)}
-              onMouseUp={() => inactivateKeys(key)}
-              disabled={gameOver}
-              type="button"
-            >
-              {value}
-            </button>
-          </div>
+        {Object.entries(pianoKeysMap).map(([key]: [string, string]) => (
+          <button
+            className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
+            onMouseDown={() => handlePlayNote(key)}
+            onMouseUp={() => inactivateKeys(key)}
+            disabled={gameOver}
+            type="button"
+          />
         ))}
       </div>
     </>
