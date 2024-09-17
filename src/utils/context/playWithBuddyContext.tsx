@@ -33,12 +33,12 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
 
 const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [happiness, setHappiness] = useState(2);
+  const [happiness, setHappiness] = useState(7);
 
   const increaseHappiness = () => {
     setHappiness((prev) => prev + 1);
 
-    if (happiness >= 8) {
+    if (happiness > 8) {
       setHappiness(8);
     }
   };
