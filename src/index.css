@@ -40,15 +40,13 @@ body,
   font-family: "Silkscreen", sans-serif;
   font-weight: 400;
   font-style: normal;
-  margin: 1rem;
   width: fit-content;
   text-align: center;
   padding: 0.75rem 1rem;
   font-size: 14px;
   border: 6px double rgb(70, 71, 99);
-  min-height: 2rem;
 
-  legend {
+  > legend {
     font-weight: 700;
     font-size: 16pt;
     padding: 0 1rem;
