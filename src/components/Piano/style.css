@@ -4,13 +4,14 @@
   text-transform: uppercase;
   font-weight: bold;
   display: flex;
-  justify-content: space-evenly;
+  gap: 0.25rem;
   padding: 0.75rem 0.5rem 0.1rem 0.5rem;
   width: 100%;
 
   span {
     width: -webkit-fill-available;
     text-align: center;
+    width: 1.1rem;
   }
 }
 
@@ -23,7 +24,7 @@
   text-transform: uppercase;
   color: #d2ddcd;
   border-radius: 10px;
-  box-shadow: inset -2px -1px 5px 2px rgba(0, 0, 0, 0.035);
+  box-shadow: inset -2px -1px 5px 2px rgba(0, 0, 0, 0.05);
 }
 
 .piano-key {
@@ -34,8 +35,13 @@
   background-color: #edf2ea;
   cursor: pointer;
   box-shadow: inset -1px -1px 2px 1px rgba(0, 0, 0, 0.25);
+
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .piano-key.active {
   background-color: #d8f4c4;
+  outline: none;
 }
