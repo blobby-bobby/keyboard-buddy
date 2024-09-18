@@ -28,7 +28,7 @@ const Gameboy = () => {
               <p>Reset</p>
             </div>
             <div className="button-down">
-              <button className="option" type="button"></button>
+              <button className="option" type="button" tabIndex={-1}></button>
               <p>option</p>
             </div>
           </div>

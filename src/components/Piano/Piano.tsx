@@ -92,7 +92,7 @@ const Piano = () => {
             disabled={gameOver}
             type="button"
             key={key}
-            onFocus={() => setActiveKeys((prev) => new Set(prev).add(key))}
+            // onFocus={() => setActiveKeys((prev) => new Set(prev).add(key))}
           />
         ))}
       </div>
