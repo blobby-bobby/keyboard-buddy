@@ -1,12 +1,11 @@
 .key-labels {
-  margin-top: 1rem;
   font-size: 9pt;
   color: rgb(70, 71, 99);
   text-transform: uppercase;
   font-weight: bold;
   display: flex;
   justify-content: space-evenly;
-  padding: 0.5rem 0.5rem 0.1rem 0.5rem;
+  padding: 0.75rem 0.5rem 0.1rem 0.5rem;
   width: 100%;
 
   span {
@@ -30,8 +29,8 @@
 .piano-key {
   border-radius: 0 0 4px 4px;
   border: none;
-  width: 1.25rem;
-  height: 4rem;
+  width: 1.1rem;
+  height: 3.25rem;
   background-color: #edf2ea;
   cursor: pointer;
 }
