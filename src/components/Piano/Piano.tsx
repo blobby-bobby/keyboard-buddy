@@ -91,6 +91,8 @@ const Piano = () => {
             onMouseUp={() => inactivateKeys(key)}
             disabled={gameOver}
             type="button"
+            key={key}
+            onFocus={() => setActiveKeys((prev) => new Set(prev).add(key))}
           />
         ))}
       </div>
