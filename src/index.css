@@ -7,7 +7,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #202020;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,12 +27,13 @@ body,
 #root {
   margin: 0;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 2rem;
   min-width: 320px;
   height: 100vh;
   overflow: hidden;
+  padding: 1rem;
 }
 
 .instructions {
@@ -40,11 +41,19 @@ body,
   font-weight: 400;
   font-style: normal;
   margin: 1rem;
-  max-width: 360px;
-  width: 100%;
+  width: fit-content;
   text-align: center;
-  min-height: 48px;
+  padding: 0.75rem 1rem;
   font-size: 14px;
+  border: 6px double rgb(70, 71, 99);
+  min-height: 2rem;
+
+  legend {
+    font-weight: 700;
+    font-size: 16pt;
+    padding: 0 1rem;
+    line-height: 1;
+  }
 }
 
 kbd {

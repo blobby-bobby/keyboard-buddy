@@ -7,7 +7,8 @@ function App() {
 
   return (
     <>
-      <p className="instructions">
+      <fieldset className="instructions">
+        <legend>Buddy says</legend>
         {gameOver ? (
           <>
             Game Over, press <kbd>Reset</kbd> to play again
@@ -18,7 +19,7 @@ function App() {
             <kbd>whatever</kbd> on the line of your keyboard to play music.
           </>
         )}
-      </p>
+      </fieldset>
       <Gameboy />
     </>
   );
