@@ -19,13 +19,13 @@ export const keyboardKeys = [
   "s",
   "e",
   "d",
+  "r",
   "f",
   "g",
+  "y",
   "h",
+  "u",
   "j",
-  "k",
-  "l",
-  "m",
 ];
 
 export const pianoKeysMap: Record<string, string> = pianoKeys.reduce(

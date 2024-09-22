@@ -1,47 +1,97 @@
-.key-labels {
+.piano {
+  display: flex;
+  width: 100%;
+  gap: 0.4rem;
+  margin-top: 1.75rem;
+  text-transform: uppercase;
+  position: relative;
   font-size: 9pt;
   color: rgb(70, 71, 99);
   text-transform: uppercase;
   font-weight: bold;
+
+  &::before {
+    position: absolute;
+    content: " ";
+    width: 103%;
+    height: 3.85rem;
+    top: -0.35rem;
+    left: -1.75%;
+    border-radius: 4px;
+    background-color: rgb(188, 202, 179);
+    box-shadow: inset -2px -1px 5px 2px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.piano-key-wrapper {
   display: flex;
   gap: 0.25rem;
-  padding: 0.75rem 0.5rem 0.1rem 0.5rem;
-  width: 100%;
+  flex-direction: column;
+  position: relative;
+
+  &:nth-of-type(2),
+  &:nth-of-type(4),
+  &:nth-of-type(6),
+  &:nth-of-type(9),
+  &:nth-of-type(11) {
+    position: absolute;
+    gap: 0.35rem;
+    z-index: 1;
+    top: -1.5rem;
+    width: 1.5rem;
+    left: 1.35rem;
+    flex-direction: column-reverse;
+
+    & > .piano-key {
+      background-color: #525564;
+      border-radius: 2px 2px 4px 4px;
+      width: 1.5rem;
+      height: 2.5rem;
+
+      &.active {
+        background-color: #3d404c;
+      }
+    }
+  }
+
+  &:nth-of-type(4) {
+    left: 3.75rem;
+  }
+
+  &:nth-of-type(6) {
+    left: 6.15rem;
+  }
+
+  &:nth-of-type(9) {
+    left: 11rem;
+  }
+
+  &:nth-of-type(11) {
+    left: 13.35rem;
+  }
 
   span {
     width: -webkit-fill-available;
     text-align: center;
-    width: 1.1rem;
   }
-}
-
-.piano {
-  display: flex;
-  width: 100%;
-  gap: 0.25rem;
-  background-color: rgb(188, 202, 179);
-  padding: 0.5rem;
-  text-transform: uppercase;
-  color: #d2ddcd;
-  border-radius: 10px;
-  box-shadow: inset -2px -1px 5px 2px rgba(0, 0, 0, 0.05);
 }
 
 .piano-key {
   border-radius: 4px;
   border: none;
-  width: 1.1rem;
+  width: 2rem;
   height: 3.25rem;
   background-color: #edf2ea;
   cursor: pointer;
   box-shadow: inset -1px -1px 2px 1px rgba(0, 0, 0, 0.25);
+  position: relative;
 
   &:focus-visible {
     outline: none;
   }
-}
 
-.piano-key.active {
-  background-color: #d8f4c4;
-  outline: none;
+  &.active {
+    background-color: #d8f4c4;
+    outline: none;
+  }
 }
