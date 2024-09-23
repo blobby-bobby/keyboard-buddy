@@ -9,6 +9,17 @@ import {
   useState,
 } from "react";
 
+const buddyFeelings = {
+  idle: "idle",
+  sad: "sad",
+  dead: "dead",
+  hungry: "hungry",
+  dirty: "dirty",
+} as const;
+
+type EnumValue<T> = T[keyof T];
+type BuddyFeeling = EnumValue<typeof buddyFeelings>;
+
 type BuddyPlayContextProps = {
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
@@ -18,6 +29,9 @@ type BuddyPlayContextProps = {
   decreaseHappiness: () => void;
   gameStart: () => void;
   gameOver: boolean;
+  buddyState: BuddyFeeling;
+  setBuddyState: Dispatch<SetStateAction<BuddyFeeling>>;
+  isSad: boolean;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
@@ -29,10 +43,14 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   decreaseHappiness: () => {},
   gameStart: () => {},
   gameOver: false,
+  buddyState: buddyFeelings.idle,
+  setBuddyState: () => {},
+  isSad: false,
 });
 
 const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [buddyState, setBuddyState] = useState<BuddyFeeling>("idle");
   const [happiness, setHappiness] = useState(7);
 
   const increaseHappiness = () => {
@@ -52,11 +70,16 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const gameStart = useCallback(() => {
+    setBuddyState(buddyFeelings.idle);
     setHappiness(7);
   }, []);
 
   const gameOver = useMemo(() => {
     return happiness < 1;
+  }, [happiness]);
+
+  const isSad = useMemo(() => {
+    return happiness < 3;
   }, [happiness]);
 
   return (
@@ -70,6 +93,9 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
         decreaseHappiness,
         gameStart,
         gameOver,
+        setBuddyState,
+        buddyState,
+        isSad,
       }}
     >
       {children}

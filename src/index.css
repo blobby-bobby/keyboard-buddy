@@ -29,11 +29,11 @@ body,
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.25rem;
   min-width: 320px;
   height: 100vh;
   overflow: hidden;
-  padding: 1rem 1rem 0 1rem;
+  padding: 0.75rem 1rem 0 1rem;
 }
 
 .instructions {
@@ -41,10 +41,13 @@ body,
   font-weight: 400;
   font-style: normal;
   width: fit-content;
-  text-align: center;
+  text-wrap: none;
+  text-align: left;
   padding: 0.75rem 1rem;
   font-size: 14px;
   border: 6px double rgb(70, 71, 99);
+  width: 400px;
+  height: 140px;
 
   > legend {
     font-weight: 700;

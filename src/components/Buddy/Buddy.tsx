@@ -13,6 +13,7 @@ const Buddy = () => {
     decreaseHappiness,
     increaseHappiness,
     gameOver,
+    isSad,
   } = useContext(BuddyPlayContext);
 
   useEffect(() => {
@@ -37,7 +38,7 @@ const Buddy = () => {
         <div className="feeling-panel">
           <img
             src={sad_icon}
-            className={`${happiness < 3 ? "sad" : ""}`}
+            className={`${isSad ? "sad" : ""}`}
             alt="feeling-sad"
           />
         </div>
