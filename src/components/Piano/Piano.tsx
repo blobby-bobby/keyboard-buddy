@@ -80,14 +80,14 @@ const Piano = () => {
     <>
       <div className="piano">
         {Object.entries(pianoKeysMap).map(([key]: [string, string]) => (
-          <div className="piano-key-wrapper">
+          <div className="piano-key-wrapper" key={key}>
             <button
               className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
               onMouseDown={() => handlePlayNote(key)}
               onMouseUp={() => inactivateKeys(key)}
               disabled={gameOver}
               type="button"
-              key={key}
+              tabIndex={-1}
             />
             <span>{key}</span>
           </div>

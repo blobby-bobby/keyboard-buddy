@@ -9,51 +9,49 @@ import {
   useState,
 } from "react";
 
-const buddyFeelings = {
-  idle: "idle",
-  sad: "sad",
-  dead: "dead",
+// BUDDY EVENT STATES
+// TODO: implement fully functionnal event system and resolution
+const eventsFeelings = {
   hungry: "hungry",
   dirty: "dirty",
 } as const;
 
 type EnumValue<T> = T[keyof T];
-type BuddyFeeling = EnumValue<typeof buddyFeelings>;
+type BuddyFeeling = EnumValue<typeof eventsFeelings>;
 
 type BuddyPlayContextProps = {
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   happiness: number;
-  setHappiness: Dispatch<SetStateAction<number>>;
   increaseHappiness: () => void;
   decreaseHappiness: () => void;
   gameStart: () => void;
   gameOver: boolean;
-  buddyState: BuddyFeeling;
-  setBuddyState: Dispatch<SetStateAction<BuddyFeeling>>;
   isSad: boolean;
+  eventFeeling: BuddyFeeling | null;
+  setEventFeeling: Dispatch<SetStateAction<BuddyFeeling | null>>;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   isPlaying: false,
   setIsPlaying: () => {},
   happiness: 7,
-  setHappiness: () => {},
   increaseHappiness: () => {},
   decreaseHappiness: () => {},
   gameStart: () => {},
   gameOver: false,
-  buddyState: buddyFeelings.idle,
-  setBuddyState: () => {},
   isSad: false,
+  eventFeeling: null,
+  setEventFeeling: () => {},
 });
 
 const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [buddyState, setBuddyState] = useState<BuddyFeeling>("idle");
   const [happiness, setHappiness] = useState(7);
+  const [eventFeeling, setEventFeeling] = useState<BuddyFeeling | null>(null);
 
   const increaseHappiness = () => {
+    if (eventFeeling) return;
     setHappiness((prev) => prev + 1);
 
     if (happiness > 8) {
@@ -70,7 +68,6 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   const gameStart = useCallback(() => {
-    setBuddyState(buddyFeelings.idle);
     setHappiness(7);
   }, []);
 
@@ -88,14 +85,13 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
         isPlaying,
         setIsPlaying,
         happiness,
-        setHappiness,
         increaseHappiness,
         decreaseHappiness,
         gameStart,
         gameOver,
-        setBuddyState,
-        buddyState,
         isSad,
+        eventFeeling,
+        setEventFeeling,
       }}
     >
       {children}

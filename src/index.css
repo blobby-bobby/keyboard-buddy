@@ -35,30 +35,3 @@ body,
   overflow: hidden;
   padding: 0.75rem 1rem 0 1rem;
 }
-
-.instructions {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  width: fit-content;
-  text-wrap: none;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  font-size: 14px;
-  border: 6px double rgb(70, 71, 99);
-  width: 400px;
-  height: 140px;
-
-  > legend {
-    font-weight: 700;
-    font-size: 16pt;
-    padding: 0 1rem;
-    line-height: 1;
-  }
-}
-
-kbd {
-  font-family: "Silkscreen", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}

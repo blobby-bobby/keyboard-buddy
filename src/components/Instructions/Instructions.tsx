@@ -1,13 +1,15 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
+import "./style.css";
 
 const Instructions = () => {
-  const { gameOver } = useContext(BuddyPlayContext);
+  const { gameOver, eventFeeling } = useContext(BuddyPlayContext);
 
   const [animatedText, setAnimatedText] = useState("");
   const idleText =
-    "Play with Buddy on the piano by clicking on the keys or using your keyboard to keep him happy!";
-  const gameOverText = "Game Over! Press reset to play again and revive Buddy.";
+    "Play with me on the piano by clicking on the keys or using your keyboard to keep me happy!";
+  const gameOverText = "Game Over! Press reset to play again and revive me.";
+  const hungryBuddyText = "I'm hungry! Play the melody of chicken to feed me.";
   const [displayedText, setDisplayedText] = useState(idleText);
 
   // Animate text when the `displayedText` changes
@@ -28,10 +30,12 @@ const Instructions = () => {
   useEffect(() => {
     if (gameOver) {
       setDisplayedText(gameOverText);
+    } else if (eventFeeling === "hungry") {
+      setDisplayedText(hungryBuddyText);
     } else {
       setDisplayedText(idleText);
     }
-  }, [gameOver]);
+  }, [gameOver, eventFeeling]);
 
   useEffect(() => {
     animateText();

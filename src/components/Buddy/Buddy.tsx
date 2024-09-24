@@ -14,7 +14,22 @@ const Buddy = () => {
     increaseHappiness,
     gameOver,
     isSad,
+    eventFeeling,
+    setEventFeeling,
   } = useContext(BuddyPlayContext);
+
+  // BUDDY EVENT HANDLERS
+  const buddyGetsHungry = () => {
+    setEventFeeling("hungry");
+  };
+
+  const buddyHungryEventRandomInterval = () => {
+    const minInterval = 1 * 60 * 1000; // 1 minute
+    const maxInterval = 5 * 60 * 1000; // 5 minutes
+    const randomInterval =
+      Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval;
+    setTimeout(buddyGetsHungry, randomInterval);
+  };
 
   useEffect(() => {
     if (isPlaying) {
@@ -27,10 +42,18 @@ const Buddy = () => {
     }
   }, [isPlaying]);
 
-  const buddyFeeling = useMemo(() => {
+  useEffect(() => {
+    buddyHungryEventRandomInterval();
+  }, []);
+
+  const buddyDisplay = useMemo(() => {
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
   }, [happiness]);
+
+  if (eventFeeling === "hungry") {
+    console.log("Buddy is hungry!");
+  }
 
   return (
     <div className="buddyvision">
@@ -52,7 +75,11 @@ const Buddy = () => {
         </div>
       </div>
       <div className="buddy-background">
-        <img src={buddyFeeling} alt="buddy" />
+        <img src={buddyDisplay} alt="buddy" />
+      </div>
+      <div className="interface-bottom">
+        <span>{eventFeeling === "hungry" ? "🍗" : ""}</span>
+        <span>{eventFeeling === "dirty" ? "💩" : ""}</span>
       </div>
     </div>
   );
