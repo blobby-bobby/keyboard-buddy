@@ -32,15 +32,32 @@ const Buddy = () => {
   };
 
   useEffect(() => {
-    if (isPlaying) {
-      increaseHappiness();
-    } else {
-      const interval = setInterval(() => {
-        decreaseHappiness();
-      }, 10000);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying]);
+    const handleGameOver = () => {
+      if (gameOver) {
+        setEventFeeling(null);
+      }
+    };
+
+    const handleIsPlaying = () => {
+      if (isPlaying) {
+        increaseHappiness();
+      } else {
+        const interval = setInterval(() => {
+          decreaseHappiness();
+        }, 10000);
+        return () => clearInterval(interval);
+      }
+    };
+
+    handleGameOver();
+    const intervalCleanup = handleIsPlaying();
+
+    return () => {
+      if (intervalCleanup) {
+        intervalCleanup();
+      }
+    };
+  }, [isPlaying, gameOver]);
 
   useEffect(() => {
     buddyHungryEventRandomInterval();
@@ -49,7 +66,7 @@ const Buddy = () => {
   const buddyDisplay = useMemo(() => {
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
-  }, [happiness]);
+  }, [happiness, gameOver]);
 
   if (eventFeeling === "hungry") {
     console.log("Buddy is hungry!");
