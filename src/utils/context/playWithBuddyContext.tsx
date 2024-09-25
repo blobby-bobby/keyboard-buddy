@@ -45,7 +45,7 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   setEventFeeling: () => {},
 });
 
-const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
+const useBuddyPlayContext = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [happiness, setHappiness] = useState(7);
   const [eventFeeling, setEventFeeling] = useState<BuddyFeeling | null>(null);
@@ -79,21 +79,25 @@ const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
     return happiness < 3;
   }, [happiness]);
 
+  return {
+    isPlaying,
+    setIsPlaying,
+    happiness,
+    increaseHappiness,
+    decreaseHappiness,
+    gameStart,
+    gameOver,
+    isSad,
+    eventFeeling,
+    setEventFeeling,
+  };
+};
+
+const BuddyPlayProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const value = useBuddyPlayContext();
+
   return (
-    <BuddyPlayContext.Provider
-      value={{
-        isPlaying,
-        setIsPlaying,
-        happiness,
-        increaseHappiness,
-        decreaseHappiness,
-        gameStart,
-        gameOver,
-        isSad,
-        eventFeeling,
-        setEventFeeling,
-      }}
-    >
+    <BuddyPlayContext.Provider value={value}>
       {children}
     </BuddyPlayContext.Provider>
   );
