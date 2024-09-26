@@ -30,22 +30,23 @@
   position: relative;
 
   &:nth-of-type(2),
-  &:nth-of-type(4),
-  &:nth-of-type(6),
-  &:nth-of-type(9),
-  &:nth-of-type(11) {
+  &:nth-of-type(5),
+  &:nth-of-type(7),
+  &:nth-of-type(10),
+  &:nth-of-type(12),
+  &:nth-of-type(14) {
     position: absolute;
     gap: 0.35rem;
     z-index: 1;
     top: -1.5rem;
-    width: 1.5rem;
-    left: 1.35rem;
+    width: 1.25rem;
+    left: 1rem;
     flex-direction: column-reverse;
 
     & > .piano-key {
       background-color: #525564;
       border-radius: 2px 2px 4px 4px;
-      width: 1.5rem;
+      width: 1.25rem;
       height: 2.5rem;
 
       &.active {
@@ -54,20 +55,24 @@
     }
   }
 
-  &:nth-of-type(4) {
-    left: 3.75rem;
+  &:nth-of-type(5) {
+    left: 4.75rem;
   }
 
-  &:nth-of-type(6) {
-    left: 6.15rem;
+  &:nth-of-type(7) {
+    left: 6.75rem;
   }
 
-  &:nth-of-type(9) {
-    left: 11rem;
+  &:nth-of-type(10) {
+    left: 10.5rem;
   }
 
-  &:nth-of-type(11) {
-    left: 13.35rem;
+  &:nth-of-type(12) {
+    left: 12.45rem;
+  }
+
+  &:nth-of-type(14) {
+    left: 14.35rem;
   }
 
   span {
@@ -79,7 +84,7 @@
 .piano-key {
   border-radius: 4px;
   border: none;
-  width: 2rem;
+  width: 1.5rem;
   height: 3.25rem;
   background-color: #edf2ea;
   cursor: pointer;
