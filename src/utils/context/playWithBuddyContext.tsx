@@ -8,16 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-
-// BUDDY EVENT STATES
-// TODO: implement fully functionnal event system and resolution
-const eventsFeelings = {
-  hungry: "hungry",
-  dirty: "dirty",
-} as const;
-
-type EnumValue<T> = T[keyof T];
-type BuddyFeeling = EnumValue<typeof eventsFeelings>;
+import { BuddyFeeling } from "../types";
 
 type BuddyPlayContextProps = {
   isPlaying: boolean;
@@ -28,8 +19,8 @@ type BuddyPlayContextProps = {
   gameStart: () => void;
   gameOver: boolean;
   isSad: boolean;
-  eventFeeling: BuddyFeeling | null;
-  setEventFeeling: Dispatch<SetStateAction<BuddyFeeling | null>>;
+  eventFeeling: BuddyFeeling;
+  setEventFeeling: Dispatch<SetStateAction<BuddyFeeling>>;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
@@ -41,17 +32,17 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   gameStart: () => {},
   gameOver: false,
   isSad: false,
-  eventFeeling: null,
+  eventFeeling: "idle",
   setEventFeeling: () => {},
 });
 
 const useBuddyPlayContext = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [happiness, setHappiness] = useState(7);
-  const [eventFeeling, setEventFeeling] = useState<BuddyFeeling | null>(null);
+  const [eventFeeling, setEventFeeling] = useState<BuddyFeeling>("idle");
 
   const increaseHappiness = () => {
-    if (eventFeeling) return;
+    if (eventFeeling !== "idle") return;
     setHappiness((prev) => prev + 1);
 
     if (happiness > 8) {
