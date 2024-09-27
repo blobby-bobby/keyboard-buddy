@@ -29,7 +29,6 @@ const Buddy = () => {
   };
 
   const buddyHungryEventRandomInterval = () => {
-    if (gameOver) return;
     const randomInterval =
       Math.floor(Math.random() * (MAX_INTERVAL - MIN_INTERVAL + 1)) +
       MIN_INTERVAL;
@@ -38,9 +37,7 @@ const Buddy = () => {
 
   useEffect(() => {
     const handleGameOver = () => {
-      if (gameOver) {
-        setEventFeeling("idle");
-      }
+      if (gameOver) setEventFeeling("idle");
     };
 
     const handleIsPlaying = () => {
@@ -72,10 +69,6 @@ const Buddy = () => {
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
   }, [happiness, gameOver]);
-
-  if (eventFeeling === "hungry") {
-    console.log("Buddy is hungry!");
-  }
 
   return (
     <div className="buddyvision">

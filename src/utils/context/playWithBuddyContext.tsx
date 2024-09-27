@@ -60,6 +60,7 @@ const useBuddyPlayContext = () => {
 
   const gameStart = useCallback(() => {
     setHappiness(7);
+    setEventFeeling("idle");
   }, []);
 
   const gameOver = useMemo(() => {
