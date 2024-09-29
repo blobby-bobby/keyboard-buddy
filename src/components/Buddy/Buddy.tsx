@@ -7,7 +7,10 @@ import dead from "../../assets/buddy-dead.png";
 import sad_icon from "../../assets/sad-ui.svg";
 import hunger_icon from "../../assets/hunger_ui.svg";
 import poop_icon from "../../assets/poop_ui.svg";
-import { LOWER_HAPPINESS_INTERVAL, RANDOM_INTERVAL } from "../../utils/types";
+import {
+  LOWER_HAPPINESS_INTERVAL,
+  RANDOM_INTERVAL,
+} from "../../utils/intervals";
 
 const Buddy = () => {
   const {

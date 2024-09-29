@@ -1,4 +1,4 @@
-import { EnumValue } from "../types";
+import { EnumValue } from "../feelings";
 
 export const pianoKeys = [
   "A3",

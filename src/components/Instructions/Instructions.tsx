@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import "./style.css";
 import { pianoKeysMap } from "../../utils/piano/pianoKeysMap";
-import { buddyMelodies } from "../../utils/types";
+import { buddyMelodies } from "../../utils/feelings";
 
 const Instructions = () => {
   const { gameOver, eventFeeling } = useContext(BuddyPlayContext);

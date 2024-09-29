@@ -8,7 +8,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { BuddyFeeling } from "../types";
+import { BuddyFeeling } from "../feelings";
 
 type BuddyPlayContextProps = {
   isPlaying: boolean;
