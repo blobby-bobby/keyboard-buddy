@@ -5,11 +5,7 @@ import idle from "../../assets/buddy_idle.gif";
 import sad from "../../assets/buddy_sad.gif";
 import dead from "../../assets/buddy-dead.png";
 import sad_icon from "../../assets/sad-ui.png";
-import {
-  LOWER_HAPPINESS_INTERVAL,
-  MAX_INTERVAL,
-  MIN_INTERVAL,
-} from "../../utils/types";
+import { LOWER_HAPPINESS_INTERVAL, RANDOM_INTERVAL } from "../../utils/types";
 
 const Buddy = () => {
   const {
@@ -31,10 +27,7 @@ const Buddy = () => {
   }, [setEventFeeling, gameOver]);
 
   const buddyHungryEventRandomInterval = useCallback(() => {
-    const randomInterval =
-      Math.floor(Math.random() * (MAX_INTERVAL - MIN_INTERVAL + 1)) +
-      MIN_INTERVAL;
-    setTimeout(buddyGetsHungry, randomInterval);
+    setTimeout(buddyGetsHungry, RANDOM_INTERVAL);
   }, [buddyGetsHungry]);
 
   useEffect(() => {
@@ -68,6 +61,7 @@ const Buddy = () => {
     buddyHungryEventRandomInterval();
   }, [buddyHungryEventRandomInterval, gameOver]);
 
+  // BUDDY SPRITE ON SCREEN
   const buddyDisplay = useMemo(() => {
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
