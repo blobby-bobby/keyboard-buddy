@@ -49,15 +49,25 @@ const Instructions = () => {
 
       <p>{animatedText}</p>
 
-      {eventFeeling === "hungry" && (
+      <section className="melodic-panel">
         <div className="melody">
           {buddyMelodies.hungry.map((key) => (
-            <span key={String(key)}>
-              {String(key)}: {pianoKeysMap[String(key)]} ||
-            </span>
+            <div key={String(key)} className="note">
+              <span>{String(key)}</span>
+              <span>{pianoKeysMap[String(key)]}</span>
+            </div>
           ))}
         </div>
-      )}
+        <div
+          className={`partition ${eventFeeling === "hungry" ? "on" : "off"}`}
+        >
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+          <hr />
+        </div>
+      </section>
     </fieldset>
   );
 };
