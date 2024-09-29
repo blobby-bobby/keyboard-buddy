@@ -4,7 +4,9 @@ import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
 import sad from "../../assets/buddy_sad.gif";
 import dead from "../../assets/buddy-dead.png";
-import sad_icon from "../../assets/sad-ui.png";
+import sad_icon from "../../assets/sad-ui.svg";
+import hunger_icon from "../../assets/hunger_ui.svg";
+import poop_icon from "../../assets/poop_ui.svg";
 import { LOWER_HAPPINESS_INTERVAL, RANDOM_INTERVAL } from "../../utils/types";
 
 const Buddy = () => {
@@ -90,12 +92,16 @@ const Buddy = () => {
         <img src={buddyDisplay} alt="buddy" />
       </div>
       <div className="interface-bottom">
-        <span className={`event ${eventFeeling === "hungry" ? "on" : "off"}`}>
-          🍗
-        </span>
-        <span className={`event ${eventFeeling === "dirty" ? "on" : "off"}`}>
-          💩
-        </span>
+        <img
+          src={hunger_icon}
+          className={`event ${eventFeeling === "hungry" ? "on" : "off"}`}
+          alt="hunger"
+        />
+        <img
+          src={poop_icon}
+          className={`event ${eventFeeling === "dirty" ? "on" : "off"}`}
+          alt="hygiene"
+        />
       </div>
     </div>
   );

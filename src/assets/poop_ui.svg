@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="poop_ui" data-name="poop_ui" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 10">
+  <polygon fill="#081820" points="8 8 8 7 7 7 7 6 6 6 6 5 5 5 5 4 4 4 4 7 3 7 3 8 2 8 2 10 9 10 9 8 8 8"/>
+  <rect fill="#081820" x="2" y="3" width="1" height="1"/>
+  <rect fill="#081820" x="1" y="4" width="1" height="1"/>
+  <rect fill="#081820" x="2" y="5" width="1" height="1"/>
+  <rect fill="#081820" x="8" y="3" width="1" height="1"/>
+  <rect fill="#081820" x="7" y="4" width="1" height="1"/>
+  <rect fill="#081820" x="8" y="5" width="1" height="1"/>
+  <rect fill="#081820" x="5" y="0" width="1" height="1"/>
+  <rect fill="#081820" x="4" y="1" width="1" height="1"/>
+  <rect fill="#081820" x="5" y="2" width="1" height="1"/>
+</svg>

@@ -19,7 +19,6 @@
 .feeling-panel {
   display: flex;
   width: 100%;
-  justify-content: end;
 
   img {
     width: 20px;
@@ -61,7 +60,8 @@
 }
 
 .event {
-  opacity: 0.5;
+  opacity: 0.25;
+  height: 20px;
 
   &.on {
     opacity: 1;

@@ -68,7 +68,7 @@ const useBuddyPlayContext = () => {
   }, [happiness]);
 
   const isSad = useMemo(() => {
-    return happiness < 3;
+    return happiness < 3 && happiness > 0;
   }, [happiness]);
 
   return {
