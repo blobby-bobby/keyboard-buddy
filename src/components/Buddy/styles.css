@@ -59,3 +59,11 @@
   padding: 0.25rem;
   gap: 0.5rem;
 }
+
+.event {
+  opacity: 0.5;
+
+  &.on {
+    opacity: 1;
+  }
+}
