@@ -10,17 +10,20 @@ const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
   const { setIsPlaying, gameOver } = useContext(BuddyPlayContext);
 
-  const handlePlayNote = useCallback(async (key: string) => {
-    await initializeAudioContext();
-    if (!keyboardKeys.includes(key)) {
-      logSilence();
-      return;
-    }
+  const handlePlayNote = useCallback(
+    async (key: string) => {
+      await initializeAudioContext();
+      if (!keyboardKeys.includes(key as (typeof keyboardKeys)[number])) {
+        logSilence();
+        return;
+      }
 
-    if (gameOver) return;
-    playNote(key);
-    setActiveKeys((prev) => new Set(prev).add(key));
-  }, []);
+      if (gameOver) return;
+      playNote(key);
+      setActiveKeys((prev) => new Set(prev).add(key));
+    },
+    [gameOver]
+  );
 
   const handleKeyDown = useCallback(
     async (event: KeyboardEvent) => {
@@ -29,26 +32,23 @@ const Piano = () => {
         await handlePlayNote(key);
       }
     },
-    [activeKeys]
+    [activeKeys, handlePlayNote]
   );
+
+  const inactivateKeys = useCallback((key: string) => {
+    setActiveKeys((prev) => {
+      const newSet = new Set(prev);
+      newSet.delete(key);
+      return newSet;
+    });
+  }, []);
 
   const handleKeyUp = useCallback(
     (event: KeyboardEvent) => {
       const key = event.key.toLowerCase();
       inactivateKeys(key);
     },
-    [activeKeys]
-  );
-
-  const inactivateKeys = useCallback(
-    (key: string) => {
-      setActiveKeys((prev) => {
-        const newSet = new Set(prev);
-        newSet.delete(key);
-        return newSet;
-      });
-    },
-    [activeKeys]
+    [inactivateKeys]
   );
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Piano = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("keyup", handleKeyUp);
     };
-  }, [activeKeys]);
+  }, [activeKeys, handleKeyDown, handleKeyUp]);
 
   useEffect(() => {
     let timeOut: ReturnType<typeof setTimeout>;
@@ -74,7 +74,7 @@ const Piano = () => {
     }
 
     return () => clearTimeout(timeOut);
-  }, [activeKeys.size]);
+  }, [activeKeys.size, gameOver, setIsPlaying]);
 
   return (
     <>
@@ -83,7 +83,12 @@ const Piano = () => {
           <div className="piano-key-wrapper" key={key}>
             <button
               className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
-              onMouseDown={() => handlePlayNote(key)}
+              onMouseDown={(e) => {
+                handlePlayNote(key);
+                e.preventDefault();
+                e.stopPropagation();
+                e.currentTarget.blur(); // Remove focus from the button
+              }}
               onMouseUp={() => inactivateKeys(key)}
               disabled={gameOver}
               type="button"

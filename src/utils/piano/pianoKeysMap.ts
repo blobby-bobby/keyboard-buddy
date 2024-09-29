@@ -1,3 +1,5 @@
+import { EnumValue } from "../types";
+
 export const pianoKeys = [
   "A3",
   "A#3",
@@ -32,7 +34,9 @@ export const keyboardKeys = [
   "k",
   "o",
   "l",
-];
+] as const;
+
+export type KeyboardKey = EnumValue<typeof keyboardKeys>;
 
 export const pianoKeysMap: Record<string, string> = pianoKeys.reduce(
   (acc: Record<string, string>, key, index) => {
