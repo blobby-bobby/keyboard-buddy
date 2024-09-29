@@ -28,7 +28,7 @@ const Buddy = () => {
     if (!gameOver) {
       setEventFeeling("hungry");
     }
-  }, [gameOver, setEventFeeling]);
+  }, [setEventFeeling, gameOver]);
 
   const buddyHungryEventRandomInterval = useCallback(() => {
     const randomInterval =
@@ -37,22 +37,22 @@ const Buddy = () => {
     setTimeout(buddyGetsHungry, randomInterval);
   }, [buddyGetsHungry]);
 
-  const handleGameOver = useCallback(() => {
-    if (gameOver) setEventFeeling("idle");
-  }, [gameOver, setEventFeeling]);
-
-  const handleIsPlaying = useCallback(() => {
-    if (isPlaying) {
-      increaseHappiness();
-    } else {
-      const interval = setInterval(() => {
-        decreaseHappiness();
-      }, LOWER_HAPPINESS_INTERVAL);
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying, increaseHappiness, decreaseHappiness]);
-
   useEffect(() => {
+    const handleGameOver = () => {
+      if (gameOver) setEventFeeling("idle");
+    };
+
+    const handleIsPlaying = () => {
+      if (isPlaying) {
+        increaseHappiness();
+      } else {
+        const interval = setInterval(() => {
+          decreaseHappiness();
+        }, LOWER_HAPPINESS_INTERVAL);
+        return () => clearInterval(interval);
+      }
+    };
+
     handleGameOver();
     const intervalCleanup = handleIsPlaying();
 
@@ -61,19 +61,12 @@ const Buddy = () => {
         intervalCleanup();
       }
     };
-  }, [
-    isPlaying,
-    gameOver,
-    decreaseHappiness,
-    increaseHappiness,
-    setEventFeeling,
-    handleGameOver,
-    handleIsPlaying,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isPlaying, gameOver]);
 
   useEffect(() => {
     buddyHungryEventRandomInterval();
-  });
+  }, [buddyHungryEventRandomInterval, gameOver]);
 
   const buddyDisplay = useMemo(() => {
     if (gameOver) return dead;
@@ -103,8 +96,12 @@ const Buddy = () => {
         <img src={buddyDisplay} alt="buddy" />
       </div>
       <div className="interface-bottom">
-        <span>{eventFeeling === "hungry" ? "🍗" : ""}</span>
-        <span>{eventFeeling === "dirty" ? "💩" : ""}</span>
+        <span className={`event ${eventFeeling === "hungry" ? "on" : "off"}`}>
+          🍗
+        </span>
+        <span className={`event ${eventFeeling === "dirty" ? "on" : "off"}`}>
+          💩
+        </span>
       </div>
     </div>
   );
