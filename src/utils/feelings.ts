@@ -15,6 +15,6 @@ export const buddyMelodies: Record<
   Exclude<BuddyFeeling, "idle">,
   KeyboardKey[]
 > = {
-  hungry: ["q", "z", "d"],
+  hungry: ["q", "z", "d", "f"],
   dirty: ["g", "h", "j"],
 } as const;

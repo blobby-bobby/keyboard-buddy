@@ -3,6 +3,8 @@ import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import "./style.css";
 import { pianoKeysMap } from "../../utils/piano/pianoKeysMap";
 import { buddyMelodies } from "../../utils/feelings";
+import note from "../../assets/note.svg";
+import cleDeSol from "../../assets/cle_sol.png";
 
 const Instructions = () => {
   const { gameOver, eventFeeling } = useContext(BuddyPlayContext);
@@ -50,17 +52,18 @@ const Instructions = () => {
       <p>{animatedText}</p>
 
       <section className="melodic-panel">
+        <img className="cle-de-sol" src={cleDeSol} alt="" />
         <div className="melody">
-          {buddyMelodies.hungry.map((key) => (
-            <div key={String(key)} className="note">
-              <span>{String(key)}</span>
-              <span>{pianoKeysMap[String(key)]}</span>
-            </div>
-          ))}
+          {eventFeeling === "hungry" &&
+            buddyMelodies.hungry.map((key) => (
+              <div key={String(key)} className="note off">
+                <kbd>{String(key)}</kbd>
+                <img src={note} alt="" />
+                <span>{pianoKeysMap[String(key)]}</span>
+              </div>
+            ))}
         </div>
-        <div
-          className={`partition ${eventFeeling === "hungry" ? "on" : "off"}`}
-        >
+        <div className="partition">
           <hr />
           <hr />
           <hr />
