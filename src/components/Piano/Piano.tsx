@@ -8,7 +8,8 @@ import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 
 const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
-  const { setIsPlaying, gameOver } = useContext(BuddyPlayContext);
+  const [eventMelody, setEventMelody] = useState<string[]>([]);
+  const { setIsPlaying, gameOver, eventFeeling } = useContext(BuddyPlayContext);
 
   const handlePlayNote = useCallback(
     async (key: string) => {
@@ -21,8 +22,18 @@ const Piano = () => {
       if (gameOver) return;
       playNote(key);
       setActiveKeys((prev) => new Set(prev).add(key));
+
+      // MELODY EVENT HANDLER
+      // TODO: handle the set back to idle state when the melody is played to cure hunger
+      if (eventFeeling === "hungry") {
+        setEventMelody((prev) => {
+          const newMelody = [...prev, key];
+          console.log(newMelody);
+          return newMelody;
+        });
+      }
     },
-    [gameOver]
+    [gameOver, eventFeeling]
   );
 
   const handleKeyDown = useCallback(
