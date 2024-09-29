@@ -1,6 +1,8 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import "./style.css";
+import { pianoKeysMap } from "../../utils/piano/pianoKeysMap";
+import { buddyMelodies } from "../../utils/types";
 
 const Instructions = () => {
   const { gameOver, eventFeeling } = useContext(BuddyPlayContext);
@@ -46,6 +48,16 @@ const Instructions = () => {
       <legend>Buddy says</legend>
 
       <p>{animatedText}</p>
+
+      {eventFeeling === "hungry" && (
+        <div className="melody">
+          {buddyMelodies.hungry.map((key) => (
+            <span key={String(key)}>
+              {String(key)}: {pianoKeysMap[String(key)]} ||
+            </span>
+          ))}
+        </div>
+      )}
     </fieldset>
   );
 };
