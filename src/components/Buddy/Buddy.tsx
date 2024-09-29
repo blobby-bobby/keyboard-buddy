@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import "./styles.css";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
@@ -24,33 +24,35 @@ const Buddy = () => {
   } = useContext(BuddyPlayContext);
 
   // BUDDY EVENT HANDLERS
-  const buddyGetsHungry = () => {
-    setEventFeeling("hungry");
-  };
+  const buddyGetsHungry = useCallback(() => {
+    if (!gameOver) {
+      setEventFeeling("hungry");
+    }
+  }, [gameOver, setEventFeeling]);
 
-  const buddyHungryEventRandomInterval = () => {
+  const buddyHungryEventRandomInterval = useCallback(() => {
     const randomInterval =
       Math.floor(Math.random() * (MAX_INTERVAL - MIN_INTERVAL + 1)) +
       MIN_INTERVAL;
     setTimeout(buddyGetsHungry, randomInterval);
-  };
+  }, [buddyGetsHungry]);
+
+  const handleGameOver = useCallback(() => {
+    if (gameOver) setEventFeeling("idle");
+  }, [gameOver, setEventFeeling]);
+
+  const handleIsPlaying = useCallback(() => {
+    if (isPlaying) {
+      increaseHappiness();
+    } else {
+      const interval = setInterval(() => {
+        decreaseHappiness();
+      }, LOWER_HAPPINESS_INTERVAL);
+      return () => clearInterval(interval);
+    }
+  }, [isPlaying, increaseHappiness, decreaseHappiness]);
 
   useEffect(() => {
-    const handleGameOver = () => {
-      if (gameOver) setEventFeeling("idle");
-    };
-
-    const handleIsPlaying = () => {
-      if (isPlaying) {
-        increaseHappiness();
-      } else {
-        const interval = setInterval(() => {
-          decreaseHappiness();
-        }, LOWER_HAPPINESS_INTERVAL);
-        return () => clearInterval(interval);
-      }
-    };
-
     handleGameOver();
     const intervalCleanup = handleIsPlaying();
 
@@ -59,7 +61,15 @@ const Buddy = () => {
         intervalCleanup();
       }
     };
-  }, [isPlaying, gameOver]);
+  }, [
+    isPlaying,
+    gameOver,
+    decreaseHappiness,
+    increaseHappiness,
+    setEventFeeling,
+    handleGameOver,
+    handleIsPlaying,
+  ]);
 
   useEffect(() => {
     buddyHungryEventRandomInterval();
