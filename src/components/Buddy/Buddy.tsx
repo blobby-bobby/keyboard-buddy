@@ -2,6 +2,7 @@ import { useCallback, useContext, useEffect, useMemo } from "react";
 import "./styles.css";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
+import hungry from "../../assets/buddy_hungry.gif";
 import sad from "../../assets/buddy_sad.gif";
 import dead from "../../assets/buddy-dead.png";
 import sad_icon from "../../assets/sad-ui.svg";
@@ -79,8 +80,7 @@ const Buddy = () => {
 
   // BUDDY SPRITE ON SCREEN
   const buddyDisplay = useMemo(() => {
-    // TODO: replace with actual buddy hungry sprites
-    if (eventFeeling === "hungry") return sad;
+    if (eventFeeling === "hungry") return hungry;
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
   }, [happiness, gameOver, eventFeeling]);
