@@ -16,5 +16,5 @@ export const buddyMelodies: Record<
   KeyboardKey[]
 > = {
   hungry: ["q", "z", "d", "f"],
-  dirty: ["g", "h", "j"],
+  dirty: ["g", "l", "j", "k"],
 } as const;
