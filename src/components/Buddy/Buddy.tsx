@@ -23,29 +23,32 @@ const Buddy = () => {
     isSad,
     eventFeeling,
     setEventFeeling,
+    buddyGetsHungry,
+    buddyGetsDirty,
   } = useContext(BuddyPlayContext);
 
   // BUDDY EVENT HANDLERS
-  const buddyGetsHungry = useCallback(() => {
-    if (!gameOver) {
-      setEventFeeling("hungry");
-    }
-  }, [setEventFeeling, gameOver]);
-  const buddyHungryEventRandomInterval = useCallback(() => {
-    const interval = setTimeout(buddyGetsHungry, RANDOM_INTERVAL);
+  const buddyEventRandomInterval = useCallback(() => {
+    const interval = setTimeout(() => {
+      if (Math.random() > 0.5) {
+        buddyGetsHungry();
+      } else {
+        buddyGetsDirty();
+      }
+    }, RANDOM_INTERVAL);
     return () => clearTimeout(interval);
-  }, [buddyGetsHungry]);
+  }, [buddyGetsHungry, buddyGetsDirty]);
 
   useEffect(() => {
     if (eventFeeling === "idle") {
-      const intervalCleanup = buddyHungryEventRandomInterval();
+      const intervalCleanup = buddyEventRandomInterval();
       return () => {
         if (intervalCleanup) {
           intervalCleanup();
         }
       };
     }
-  }, [eventFeeling, buddyHungryEventRandomInterval]);
+  }, [eventFeeling, buddyEventRandomInterval]);
 
   useEffect(() => {
     const handleGameOver = () => {
@@ -75,11 +78,13 @@ const Buddy = () => {
   }, [isPlaying, gameOver]);
 
   useEffect(() => {
-    buddyHungryEventRandomInterval();
-  }, [buddyHungryEventRandomInterval, gameOver]);
+    buddyEventRandomInterval();
+  }, [buddyEventRandomInterval, gameOver]);
 
   // BUDDY SPRITE ON SCREEN
+  // TODO: Add dirty buddy sprite
   const buddyDisplay = useMemo(() => {
+    if (eventFeeling === "dirty") return sad;
     if (eventFeeling === "hungry") return hungry;
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;

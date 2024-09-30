@@ -37,6 +37,14 @@ kbd {
 .cle-de-sol {
   position: absolute;
   left: 5%;
+
+  &.off {
+    opacity: 0.25;
+  }
+
+  &.on {
+    opacity: 1;
+  }
 }
 
 .melody {

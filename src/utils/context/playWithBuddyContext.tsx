@@ -23,6 +23,8 @@ type BuddyPlayContextProps = {
   setEventFeeling: Dispatch<SetStateAction<BuddyFeeling>>;
   eventMelody: string[];
   setEventMelody: Dispatch<SetStateAction<string[]>>;
+  buddyGetsHungry: () => void;
+  buddyGetsDirty: () => void;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
@@ -38,6 +40,8 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   setEventFeeling: () => {},
   setEventMelody: () => {},
   eventMelody: [],
+  buddyGetsHungry: () => {},
+  buddyGetsDirty: () => {},
 });
 
 const useBuddyPlayContext = () => {
@@ -76,6 +80,19 @@ const useBuddyPlayContext = () => {
     return happiness < 3 && happiness > 0;
   }, [happiness]);
 
+  const buddyGetsHungry = useCallback(() => {
+    if (!gameOver) {
+      setEventFeeling("hungry");
+    }
+  }, [setEventFeeling, gameOver]);
+
+  const buddyGetsDirty = useCallback(() => {
+    if (!gameOver) {
+      setEventFeeling("dirty");
+      console.log("Buddy is dirty");
+    }
+  }, [setEventFeeling, gameOver]);
+
   return {
     isPlaying,
     setIsPlaying,
@@ -89,6 +106,8 @@ const useBuddyPlayContext = () => {
     setEventFeeling,
     eventMelody,
     setEventMelody,
+    buddyGetsHungry,
+    buddyGetsDirty,
   };
 };
 

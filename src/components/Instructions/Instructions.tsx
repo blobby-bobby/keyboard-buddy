@@ -52,10 +52,27 @@ const Instructions = () => {
       <p>{animatedText}</p>
 
       <section className="melodic-panel">
-        <img className="cle-de-sol" src={cleDeSol} alt="" />
+        <img
+          className={`cle-de-sol ${eventFeeling === "idle" ? "off" : "on"}`}
+          src={cleDeSol}
+          alt=""
+        />
         <div className="melody">
           {eventFeeling === "hungry" &&
             buddyMelodies.hungry.map((key, index) => (
+              <div
+                key={String(key)}
+                className={`note ${
+                  String(key) === eventMelody[index] ? "on" : "off"
+                }`}
+              >
+                <kbd>{String(key)}</kbd>
+                <img src={note} alt="" />
+                <span>{pianoKeysMap[String(key)]}</span>
+              </div>
+            ))}
+          {eventFeeling === "dirty" &&
+            buddyMelodies.dirty.map((key, index) => (
               <div
                 key={String(key)}
                 className={`note ${

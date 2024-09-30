@@ -31,7 +31,7 @@ const Piano = () => {
       setActiveKeys((prev) => new Set(prev).add(key));
 
       // MELODY EVENT HANDLER
-      // TODO: handle the set back to idle state when the melody is played to cure hunger
+      // TODO : REFACTOR
       if (eventFeeling === "hungry") {
         setEventMelody((prev) => {
           const newMelody = [...prev, key];
@@ -47,12 +47,31 @@ const Piano = () => {
           }
         });
       }
+
+      if (eventFeeling === "dirty") {
+        setEventMelody((prev) => {
+          const newMelody = [...prev, key];
+
+          if (
+            newMelody.every(
+              (note, index) => note === buddyMelodies.dirty[index]
+            )
+          ) {
+            return newMelody;
+          } else {
+            return [];
+          }
+        });
+      }
     },
     [gameOver, eventFeeling, setEventMelody]
   );
 
   useEffect(() => {
-    if (JSON.stringify(eventMelody) === JSON.stringify(buddyMelodies.hungry)) {
+    if (
+      JSON.stringify(eventMelody) === JSON.stringify(buddyMelodies.hungry) ||
+      JSON.stringify(eventMelody) === JSON.stringify(buddyMelodies.dirty)
+    ) {
       setEventFeeling("idle");
       setEventMelody([]);
     }
