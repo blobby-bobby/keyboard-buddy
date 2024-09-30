@@ -25,6 +25,7 @@ const Buddy = () => {
   } = useContext(BuddyPlayContext);
 
   // BUDDY EVENT HANDLERS
+  // TODO: find a way to reset the event feeling after the melody is played
   const buddyGetsHungry = useCallback(() => {
     if (!gameOver) {
       setEventFeeling("hungry");
@@ -68,9 +69,11 @@ const Buddy = () => {
 
   // BUDDY SPRITE ON SCREEN
   const buddyDisplay = useMemo(() => {
+    // TODO: replace with actual buddy hungry sprites
+    if (eventFeeling === "hungry") return sad;
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
-  }, [happiness, gameOver]);
+  }, [happiness, gameOver, eventFeeling]);
 
   return (
     <div className="buddyvision">

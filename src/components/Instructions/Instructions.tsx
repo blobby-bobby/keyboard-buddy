@@ -7,7 +7,7 @@ import note from "../../assets/note.svg";
 import cleDeSol from "../../assets/cle_sol.png";
 
 const Instructions = () => {
-  const { gameOver, eventFeeling } = useContext(BuddyPlayContext);
+  const { gameOver, eventFeeling, eventMelody } = useContext(BuddyPlayContext);
 
   const [animatedText, setAnimatedText] = useState("");
   const idleText =
@@ -55,8 +55,13 @@ const Instructions = () => {
         <img className="cle-de-sol" src={cleDeSol} alt="" />
         <div className="melody">
           {eventFeeling === "hungry" &&
-            buddyMelodies.hungry.map((key) => (
-              <div key={String(key)} className="note off">
+            buddyMelodies.hungry.map((key, index) => (
+              <div
+                key={String(key)}
+                className={`note ${
+                  String(key) === eventMelody[index] ? "on" : "off"
+                }`}
+              >
                 <kbd>{String(key)}</kbd>
                 <img src={note} alt="" />
                 <span>{pianoKeysMap[String(key)]}</span>

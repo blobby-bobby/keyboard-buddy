@@ -5,11 +5,18 @@ import { initializeAudioContext } from "../../utils/context/initializeAudioConte
 import { logSilence } from "../../utils/logSilence";
 import "./style.css";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
+import { buddyMelodies } from "../../utils/feelings";
 
 const Piano = () => {
   const [activeKeys, setActiveKeys] = useState<Set<string>>(new Set());
-  const [eventMelody, setEventMelody] = useState<string[]>([]);
-  const { setIsPlaying, gameOver, eventFeeling } = useContext(BuddyPlayContext);
+  const {
+    setIsPlaying,
+    setEventFeeling,
+    gameOver,
+    eventFeeling,
+    eventMelody,
+    setEventMelody,
+  } = useContext(BuddyPlayContext);
 
   const handlePlayNote = useCallback(
     async (key: string) => {
@@ -29,12 +36,28 @@ const Piano = () => {
         setEventMelody((prev) => {
           const newMelody = [...prev, key];
           console.log(newMelody);
-          return newMelody;
+
+          if (
+            newMelody.every(
+              (note, index) => note === buddyMelodies.hungry[index]
+            )
+          ) {
+            return newMelody;
+          } else {
+            return [];
+          }
         });
       }
     },
-    [gameOver, eventFeeling]
+    [gameOver, eventFeeling, setEventMelody]
   );
+
+  useEffect(() => {
+    if (JSON.stringify(eventMelody) === JSON.stringify(buddyMelodies.hungry)) {
+      setEventFeeling("idle");
+      setEventMelody([]);
+    }
+  }, [eventMelody, setEventFeeling, setEventMelody]);
 
   const handleKeyDown = useCallback(
     async (event: KeyboardEvent) => {

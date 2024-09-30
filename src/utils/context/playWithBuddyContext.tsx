@@ -21,6 +21,8 @@ type BuddyPlayContextProps = {
   isSad: boolean;
   eventFeeling: BuddyFeeling;
   setEventFeeling: Dispatch<SetStateAction<BuddyFeeling>>;
+  eventMelody: string[];
+  setEventMelody: Dispatch<SetStateAction<string[]>>;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
@@ -34,11 +36,14 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   isSad: false,
   eventFeeling: "idle",
   setEventFeeling: () => {},
+  setEventMelody: () => {},
+  eventMelody: [],
 });
 
 const useBuddyPlayContext = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [happiness, setHappiness] = useState(7);
+  const [eventMelody, setEventMelody] = useState<string[]>([]);
   const [eventFeeling, setEventFeeling] = useState<BuddyFeeling>("idle");
 
   const increaseHappiness = () => {
@@ -82,6 +87,8 @@ const useBuddyPlayContext = () => {
     isSad,
     eventFeeling,
     setEventFeeling,
+    eventMelody,
+    setEventMelody,
   };
 };
 
