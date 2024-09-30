@@ -35,7 +35,6 @@ const Piano = () => {
       if (eventFeeling === "hungry") {
         setEventMelody((prev) => {
           const newMelody = [...prev, key];
-          console.log(newMelody);
 
           if (
             newMelody.every(

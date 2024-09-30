@@ -25,16 +25,26 @@ const Buddy = () => {
   } = useContext(BuddyPlayContext);
 
   // BUDDY EVENT HANDLERS
-  // TODO: find a way to reset the event feeling after the melody is played
   const buddyGetsHungry = useCallback(() => {
     if (!gameOver) {
       setEventFeeling("hungry");
     }
   }, [setEventFeeling, gameOver]);
-
   const buddyHungryEventRandomInterval = useCallback(() => {
-    setTimeout(buddyGetsHungry, RANDOM_INTERVAL);
+    const interval = setTimeout(buddyGetsHungry, RANDOM_INTERVAL);
+    return () => clearTimeout(interval);
   }, [buddyGetsHungry]);
+
+  useEffect(() => {
+    if (eventFeeling === "idle") {
+      const intervalCleanup = buddyHungryEventRandomInterval();
+      return () => {
+        if (intervalCleanup) {
+          intervalCleanup();
+        }
+      };
+    }
+  }, [eventFeeling, buddyHungryEventRandomInterval]);
 
   useEffect(() => {
     const handleGameOver = () => {
