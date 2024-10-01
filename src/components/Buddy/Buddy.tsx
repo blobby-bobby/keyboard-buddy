@@ -3,6 +3,7 @@ import "./styles.css";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import idle from "../../assets/buddy_idle.gif";
 import hungry from "../../assets/buddy_hungry.gif";
+import dirty from "../../assets/buddy_dirty.gif";
 import sad from "../../assets/buddy_sad.gif";
 import dead from "../../assets/buddy-dead.png";
 import sad_icon from "../../assets/sad-ui.svg";
@@ -84,7 +85,7 @@ const Buddy = () => {
   // BUDDY SPRITE ON SCREEN
   // TODO: Add dirty buddy sprite
   const buddyDisplay = useMemo(() => {
-    if (eventFeeling === "dirty") return sad;
+    if (eventFeeling === "dirty") return dirty;
     if (eventFeeling === "hungry") return hungry;
     if (gameOver) return dead;
     return happiness < 3 ? sad : idle;
