@@ -1,0 +1,87 @@
+.instructions {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 14px;
+  border: 6px double rgb(70, 71, 99);
+  width: 360px;
+
+  > legend {
+    font-weight: 700;
+    font-size: 16pt;
+    padding: 0 1rem;
+    line-height: 1;
+  }
+
+  > p {
+    overflow-wrap: break-word;
+    hyphens: auto;
+    min-height: 92px;
+  }
+}
+
+kbd {
+  font-family: "Silkscreen", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.melodic-panel {
+  position: relative;
+  min-height: 56px;
+}
+
+.cle-de-sol {
+  position: absolute;
+  left: 5%;
+
+  &.off {
+    opacity: 0.25;
+  }
+
+  &.on {
+    opacity: 1;
+  }
+}
+
+.melody {
+  position: absolute;
+  display: flex;
+  gap: 1.25rem;
+  top: -26px;
+  padding-right: 1rem;
+  padding-left: 4rem;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-width: 1.75rem;
+
+  img {
+    width: 16px;
+  }
+
+  &.off {
+    opacity: 0.25;
+  }
+
+  &.on {
+    opacity: 1;
+  }
+}
+
+.partition {
+  border-left: 6px double rgba(70, 71, 99, 0.25);
+
+  hr {
+    margin: 0.35rem 0;
+    border: 1px solid rgba(70, 71, 99, 0.25);
+  }
+}
