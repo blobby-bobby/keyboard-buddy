@@ -31,9 +31,10 @@ cd keyboard-buddy
 3. Install the dependencies:
 
 ```bash
-// for npm users
+#for npm users
 npm install
-// for yarn users
+
+#for yarn users
 yarn
 ```
 
@@ -42,9 +43,10 @@ yarn
 To start using Keyboard Buddy, run the following command:
 
 ```bash
-// for npm users
+#for npm users
 npm start
-// for yarn users
+
+#for yarn users
 yarn dev
 ```
 
