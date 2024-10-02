@@ -14,6 +14,8 @@ const Instructions = () => {
     "Play with me on the piano by clicking on the keys or using your keyboard to keep me happy!";
   const gameOverText = "Game Over! Press reset to play again and revive me.";
   const hungryBuddyText = "I'm hungry! Play the melody of chicken to feed me.";
+  const dirtyBuddyText =
+    "Huhu, it's smelly! Play the melody of soap to clean poop.";
   const [displayedText, setDisplayedText] = useState(idleText);
 
   // Animate text when the `displayedText` changes
@@ -36,6 +38,8 @@ const Instructions = () => {
       setDisplayedText(gameOverText);
     } else if (eventFeeling === "hungry") {
       setDisplayedText(hungryBuddyText);
+    } else if (eventFeeling === "dirty") {
+      setDisplayedText(dirtyBuddyText);
     } else {
       setDisplayedText(idleText);
     }
