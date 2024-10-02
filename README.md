@@ -1,30 +1,55 @@
-# React + TypeScript + Vite
+# Keybuddy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Hi, I am KeyBuddy (short for Keyboard buddy), your musical pet ! Play on the piano to play with me !
 
-Currently, two official plugins are available:
+> Keybuddy is based on `Tamagotchi`, mixed with the playing melody gameplay from `Zelda Ocarina of Time`. So Keybuddy other name would be **Tamagotchi: the musical** ^^
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+> Pet the buddy here : [https://keyboard-buddy.vercel.app/](https://keyboard-buddy.vercel.app/)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Playing piano
+- Feeding the buddy
+- Cleaning the buddy
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+To install Keyboard Buddy, follow these steps:
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/blobby-bobby/keyboard-buddy.git
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+2. Navigate to the project directory:
+
+```bash
+cd keyboard-buddy
+```
+
+3. Install the dependencies:
+
+```bash
+// for npm users
+npm install
+// for yarn users
+yarn
+```
+
+## Usage
+
+To start using Keyboard Buddy, run the following command:
+
+```bash
+// for npm users
+npm start
+// for yarn users
+yarn dev
+```
+
+## Stack
+
+- React 18.2.0
+- Vite 5.2.0
+- ToneJS 15.0.4
