@@ -23,15 +23,61 @@
   padding: 0;
 }
 
-body,
 #root {
   margin: 0;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
   gap: 1.25rem;
   min-width: 320px;
   height: 100vh;
   overflow: hidden;
   padding: 0.75rem 1rem 0 1rem;
+}
+
+.crt {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  box-shadow: inset 1rem 1rem 20rem 0 rgba(255, 255, 255, 0.1),
+    inset -2rem -2rem 20rem 0 rgba(0, 0, 0, 0.1), 0 0 0 40rem rgba(0, 0, 0, 0.1);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 15%,
+    rgba(0, 0, 0, 0.15) 50%,
+    rgba(0, 0, 0, 0.25)
+  );
+  background-size: 100% 0.25rem;
+  position: fixed;
+  pointer-events: none;
+  animation: flicker 0.3s infinite;
+}
+
+@keyframes flicker {
+  0%,
+  22%,
+  31%,
+  44%,
+  55%,
+  65%,
+  77%,
+  83%,
+  95% {
+    opacity: 0.3;
+  }
+  4%,
+  28%,
+  37%,
+  49%,
+  60%,
+  73%,
+  79%,
+  89%,
+  100% {
+    opacity: 0.5;
+  }
 }
