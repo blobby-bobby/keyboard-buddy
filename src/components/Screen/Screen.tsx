@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
-import "./style.css";
+import "./styles.css";
 import Buddy from "../Buddy/Buddy";
 
 const Screen = () => {

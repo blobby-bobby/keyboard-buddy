@@ -1,0 +1,35 @@
+details {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 1rem;
+  font-family: "Silkscreen", sans-serif;
+  border: 2px solid rgb(70, 71, 99);
+  line-height: 1;
+  width: 13rem;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+summary {
+  font-weight: bold;
+  color: rgb(70, 71, 99);
+  padding: 0.5rem;
+}
+
+ul {
+  border-top: 2px solid rgb(70, 71, 99);
+  padding: 0.5rem 1rem 1rem 1.75rem;
+  font-size: 0.75rem;
+
+  li {
+    margin-top: 0.5rem;
+  }
+}
+
+strong {
+  color: #d0adf0;
+  font-weight: normal;
+}

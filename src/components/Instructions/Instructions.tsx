@@ -1,6 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
-import "./style.css";
+import "./styles.css";
 import { pianoKeysMap } from "../../utils/piano/pianoKeysMap";
 import { buddyMelodies } from "../../utils/feelings";
 import note from "../../assets/note.svg";

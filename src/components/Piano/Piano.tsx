@@ -3,7 +3,7 @@ import { keyboardKeys, pianoKeysMap } from "../../utils/piano/pianoKeysMap";
 import { playNote } from "../../utils/piano/playNote";
 import { initializeAudioContext } from "../../utils/context/initializeAudioContext";
 import { logSilence } from "../../utils/logSilence";
-import "./style.css";
+import "./styles.css";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import { buddyMelodies } from "../../utils/feelings";
 
