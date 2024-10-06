@@ -35,7 +35,6 @@ body {
 #root {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
   gap: 1.25rem;
   height: 99%;
