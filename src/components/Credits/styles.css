@@ -7,6 +7,7 @@ details {
   border: 2px solid rgb(70, 71, 99);
   line-height: 1;
   width: 13rem;
+  background-color: #202020;
 
   @media screen and (max-width: 768px) {
     display: none;
