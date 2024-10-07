@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/blobby-bobby/keyboard-buddy/compare/v1.0.0...v1.1.0) (2024-10-07)
+
+
+### Features
+
+* replaced hardcoded version ([3e5b1fb](https://github.com/blobby-bobby/keyboard-buddy/commit/3e5b1fbef838d1285c04c996be87998665f26619))
+
 # 1.0.0 (2024-10-07)
 
 
