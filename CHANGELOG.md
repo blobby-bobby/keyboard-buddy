@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/blobby-bobby/keyboard-buddy/compare/v1.1.0...v1.1.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* updating version in package.json ([b62ee31](https://github.com/blobby-bobby/keyboard-buddy/commit/b62ee31b47d28349d99895de98b3a354ed9a34c2))
+
 # [1.1.0](https://github.com/blobby-bobby/keyboard-buddy/compare/v1.0.0...v1.1.0) (2024-10-07)
 
 
