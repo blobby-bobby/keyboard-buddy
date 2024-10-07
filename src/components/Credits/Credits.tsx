@@ -1,4 +1,5 @@
 import "./styles.css";
+import packageJson from "../../../package.json";
 
 const Credits = () => {
   return (
@@ -6,7 +7,7 @@ const Credits = () => {
       <summary>About</summary>
       <ul>
         <li>
-          This is Keybuddy <strong>version 1.0.0</strong>
+          This is Keybuddy <strong>version {packageJson.version}</strong>
         </li>
         <li>
           Created by{" "}
