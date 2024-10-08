@@ -25,6 +25,8 @@ type BuddyPlayContextProps = {
   setEventMelody: Dispatch<SetStateAction<string[]>>;
   buddyGetsHungry: () => void;
   buddyGetsDirty: () => void;
+  switchToQwerty: () => void;
+  isQwerty: boolean;
 };
 
 const BuddyPlayContext = createContext<BuddyPlayContextProps>({
@@ -42,6 +44,8 @@ const BuddyPlayContext = createContext<BuddyPlayContextProps>({
   eventMelody: [],
   buddyGetsHungry: () => {},
   buddyGetsDirty: () => {},
+  switchToQwerty: () => {},
+  isQwerty: false,
 });
 
 const useBuddyPlayContext = () => {
@@ -49,6 +53,7 @@ const useBuddyPlayContext = () => {
   const [happiness, setHappiness] = useState(7);
   const [eventMelody, setEventMelody] = useState<string[]>([]);
   const [eventFeeling, setEventFeeling] = useState<BuddyFeeling>("idle");
+  const [isQwerty, setIsQwerty] = useState(false);
 
   const increaseHappiness = () => {
     if (eventFeeling !== "idle") return;
@@ -93,6 +98,14 @@ const useBuddyPlayContext = () => {
     }
   }, [setEventFeeling, gameOver]);
 
+  const switchToQwerty = () => {
+    if (isQwerty) {
+      setIsQwerty(false);
+      return;
+    }
+    setIsQwerty(true);
+  };
+
   return {
     isPlaying,
     setIsPlaying,
@@ -108,6 +121,8 @@ const useBuddyPlayContext = () => {
     setEventMelody,
     buddyGetsHungry,
     buddyGetsDirty,
+    switchToQwerty,
+    isQwerty,
   };
 };
 

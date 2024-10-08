@@ -1,13 +1,21 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { BuddyPlayContext } from "../../utils/context/playWithBuddyContext";
 import "./styles.css";
-import { pianoKeysMap } from "../../utils/piano/pianoKeysMap";
+import {
+  pianoKeysMapAzerty,
+  pianoKeysMapQwerty,
+} from "../../utils/piano/pianoKeysMap";
 import { buddyMelodies } from "../../utils/feelings";
 import note from "../../assets/note.svg";
 import cleDeSol from "../../assets/cle_sol.png";
 
 const Instructions = () => {
-  const { gameOver, eventFeeling, eventMelody } = useContext(BuddyPlayContext);
+  const { gameOver, eventFeeling, eventMelody, isQwerty } =
+    useContext(BuddyPlayContext);
+
+  const keysToMap = useMemo(() => {
+    return isQwerty ? pianoKeysMapQwerty : pianoKeysMapAzerty;
+  }, [isQwerty]);
 
   const [animatedText, setAnimatedText] = useState("");
   const idleText =
@@ -72,7 +80,7 @@ const Instructions = () => {
               >
                 <kbd>{String(key)}</kbd>
                 <img src={note} alt="" />
-                <span>{pianoKeysMap[String(key)]}</span>
+                <span>{keysToMap[String(key)]}</span>
               </div>
             ))}
           {eventFeeling === "dirty" &&
@@ -85,7 +93,7 @@ const Instructions = () => {
               >
                 <kbd>{String(key)}</kbd>
                 <img src={note} alt="" />
-                <span>{pianoKeysMap[String(key)]}</span>
+                <span>{keysToMap[String(key)]}</span>
               </div>
             ))}
         </div>

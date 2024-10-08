@@ -1,5 +1,3 @@
-import { EnumValue } from "../feelings";
-
 export const pianoKeys = [
   "A3",
   "A#3",
@@ -18,29 +16,24 @@ export const pianoKeys = [
   "B4",
 ];
 
-export const keyboardKeys = [
-  "q",
-  "z",
-  "s",
-  "d",
-  "r",
-  "f",
-  "t",
-  "g",
-  "h",
-  "u",
-  "j",
-  "i",
-  "k",
-  "o",
-  "l",
-] as const;
+const qwerties = ["a", "w"];
+const azerties = ["q", "z"];
+const rest = ["s", "d", "r", "f", "t", "g", "h", "u", "j", "i", "k", "o", "l"];
 
-export type KeyboardKey = EnumValue<typeof keyboardKeys>;
+const keyboardKeysAzerty = [...azerties, ...rest];
+const keyboardKeysQwerty = [...qwerties, ...rest];
 
-export const pianoKeysMap: Record<string, string> = pianoKeys.reduce(
+export const pianoKeysMapAzerty: Record<string, string> = pianoKeys.reduce(
   (acc: Record<string, string>, key, index) => {
-    acc[keyboardKeys[index]] = key;
+    acc[keyboardKeysAzerty[index]] = key;
+    return acc;
+  },
+  {}
+);
+
+export const pianoKeysMapQwerty: Record<string, string> = pianoKeys.reduce(
+  (acc: Record<string, string>, key, index) => {
+    acc[keyboardKeysQwerty[index]] = key;
     return acc;
   },
   {}

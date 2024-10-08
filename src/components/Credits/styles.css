@@ -1,13 +1,17 @@
-details {
+aside {
   position: absolute;
   bottom: 0;
   right: 0;
   margin: 1rem;
+}
+
+details {
   font-family: "Silkscreen", sans-serif;
   border: 2px solid rgb(70, 71, 99);
   line-height: 1;
-  width: 13rem;
+  width: 16rem;
   background-color: #202020;
+  margin-top: 0.5rem;
 
   @media screen and (max-width: 768px) {
     display: none;
@@ -27,6 +31,44 @@ ul {
 
   li {
     margin-top: 0.5rem;
+  }
+}
+
+.ff-like-menu {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+
+  li {
+    list-style: none;
+    width: 50%;
+    margin-left: 1rem;
+
+    button {
+      background: none;
+      font-family: "Silkscreen", sans-serif;
+      font-weight: bold;
+      border: none;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      text-align: left;
+      padding-bottom: 0.75rem;
+      padding-top: -0.75rem;
+
+      &:hover,
+      &:focus {
+        color: #d0adf0;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    &:hover {
+      list-style: url("../../assets/cursor.png");
+    }
   }
 }
 
