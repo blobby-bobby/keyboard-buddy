@@ -21,7 +21,7 @@ const Gameboy = () => {
             <div className="button-down">
               <button
                 className="reset"
-                type="button"
+                type="reset"
                 disabled={!gameOver}
                 onClick={gameStart}
               ></button>
