@@ -1,5 +1,8 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { keyboardKeys, pianoKeysMap } from "../../utils/piano/pianoKeysMap";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import {
+  pianoKeysMapAzerty,
+  pianoKeysMapQwerty,
+} from "../../utils/piano/pianoKeysMap";
 import { playNote } from "../../utils/piano/playNote";
 import { initializeAudioContext } from "../../utils/context/initializeAudioContext";
 import { logSilence } from "../../utils/logSilence";
@@ -16,18 +19,23 @@ const Piano = () => {
     eventFeeling,
     eventMelody,
     setEventMelody,
+    isQwerty,
   } = useContext(BuddyPlayContext);
+
+  const keysToMap = useMemo(() => {
+    return isQwerty ? pianoKeysMapQwerty : pianoKeysMapAzerty;
+  }, [isQwerty]);
 
   const handlePlayNote = useCallback(
     async (key: string) => {
       await initializeAudioContext();
-      if (!keyboardKeys.includes(key as (typeof keyboardKeys)[number])) {
+      if (!Object.keys(keysToMap).includes(key)) {
         logSilence();
         return;
       }
 
       if (gameOver) return;
-      playNote(key);
+      playNote(key, isQwerty);
       setActiveKeys((prev) => new Set(prev).add(key));
 
       // MELODY EVENT HANDLER
@@ -64,7 +72,7 @@ const Piano = () => {
         });
       }
     },
-    [gameOver, eventFeeling, setEventMelody]
+    [gameOver, eventFeeling, setEventMelody, isQwerty, keysToMap]
   );
 
   useEffect(() => {
@@ -131,7 +139,7 @@ const Piano = () => {
   return (
     <>
       <div className="piano">
-        {Object.entries(pianoKeysMap).map(([key]: [string, string]) => (
+        {Object.entries(keysToMap).map(([key]: [string, string]) => (
           <div className="piano-key-wrapper" key={key}>
             <button
               className={`piano-key ${activeKeys.has(key) ? "active" : ""}`}
