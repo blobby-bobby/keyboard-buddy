@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/blobby-bobby/keyboard-buddy/compare/v1.1.1...v1.2.0) (2024-10-11)
+
+
+### Bug Fixes
+
+* button type ([cbb37f7](https://github.com/blobby-bobby/keyboard-buddy/commit/cbb37f75b82e237f63e72cd9f94672c78760d20e))
+
+
+### Features
+
+* add meta tags ([28759e1](https://github.com/blobby-bobby/keyboard-buddy/commit/28759e19825b1d1076af724436804010dc870774))
+* switch to Qwerty works ([bd04630](https://github.com/blobby-bobby/keyboard-buddy/commit/bd0463079d793a5fda6ec11161a88b1124e2f249))
+
 ## [1.1.1](https://github.com/blobby-bobby/keyboard-buddy/compare/v1.1.0...v1.1.1) (2024-10-07)
 
 
